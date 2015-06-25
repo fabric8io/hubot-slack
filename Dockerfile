@@ -16,6 +16,7 @@ RUN npm install hubot-slack --save
 
 # Add plugins
 RUN npm install --save hubot-jenkins-notifier
+RUN npm install --save hubot-grafana
 
 RUN chown -R hubot:hubot /home/hubot
 
@@ -27,7 +28,7 @@ RUN git clone https://github.com/fabric8io/fabric8-hubot-scripts.git && \
 	mv fabric8-hubot-scripts/*.coffee /home/hubot/scripts && \
 	rm -rf fabric8-hubot-scripts
 
-
+ADD external-scripts.json ./external-scripts.json
 WORKDIR /home/hubot
 
 CMD bin/hubot -a slack
